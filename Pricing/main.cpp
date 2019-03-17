@@ -18,7 +18,7 @@ int main()
 {
 	SimulationPrice Price;
 
-	std::cout << "Welcome to The BlackScholes Calculator" << std::endl;
+	std::cout << "Welcome to The ****** Calculator" << std::endl;
 
 	double spot{ 0.0 };
 	double strike{ 0.0 };
