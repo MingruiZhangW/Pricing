@@ -22,6 +22,8 @@ public:
 	double pricePutBySimulation();
 	double priceDigitalPutBySimulation();
 	double priceDoubleDigitalBySimulation();
+	double Cal_Change(double spot, int type);
+
 	//Getter & Setter 
 	void yearsToExpiry_Set(double yearsToExpiry);
 	double yearsToExpiry_Get();
@@ -45,6 +47,10 @@ private:
 	double m_annualizedVolatility;
 	double m_shortRate;
 	unsigned long m_numberOfPaths;
+	double m_UpperLevel;
+	double m_LowerLevel;
+	int m_type;
+
 	double normalDensity(double x);
 	double cumulativeNormal(double x);
 	double getOneGaussianByBoxMuller();

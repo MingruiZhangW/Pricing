@@ -37,8 +37,7 @@ double SimulationPrice::priceCallBySimulation()
 	{
 		const double thisGaussian = getOneGaussianByBoxMuller(); // generate one normal variable
 		double thisSpot = movedSpot * exp(rootVariance * thisGaussian);
-		double intrinsicValue = thisSpot - m_strike;
-		double thisPayoff = intrinsicValue > 0. ? intrinsicValue : 0.;
+		double thisPayoff = Cal_Change(thisSpot,m_type);/*payoffffffffffffffffffffffff*/
 		runningSum += thisPayoff;
 	}
 
@@ -183,4 +182,23 @@ unsigned long SimulationPrice::numberOfPaths_Get() {
 
 	return m_numberOfPaths;
 
+}
+
+double SimulationPrice::Cal_Change(double spot, int type)
+{
+	switch (type)
+	{
+	//EUcall
+	case 0: return (spot - m_strike >= 0.0) ? (spot - m_strike) : (0.0); break;
+	//EUput
+	case 1: return (m_strike - spot >= 0.0) ? (m_strike - spot) : (0.0); break; 
+	//DigitalCall
+	case 2: return (spot - m_strike >= 0) ? (1.0) : (0.0); break;
+	//DigitalPut
+	case 3: return (m_strike - spot >= 0) ? (1.0) : (0.0); break;
+	//DoubleDigital
+	case 4: return ((spot >= m_LowerLevel) && (spot <= m_UpperLevel)) ? (1.0) : (0.0); break;
+	default:
+		throw("unknown option type found.");
+	}
 }
