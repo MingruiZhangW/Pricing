@@ -183,6 +183,36 @@ unsigned long SimulationPrice::numberOfPaths_Get() {
 	return m_numberOfPaths;
 
 }
+void SimulationPrice::type_Set(int type) {
+
+	m_type = type;
+
+}
+int SimulationPrice::type_Get() {
+
+	return m_type;
+
+}
+void SimulationPrice::UpperLevel_Set(double UpperLevel) {
+
+	m_UpperLevel = UpperLevel;
+
+}
+double SimulationPrice::UpperLevel_Get() {
+
+	return m_UpperLevel;
+
+}
+void SimulationPrice::LowerLevel_Set(double LowerLevel) {
+
+	m_LowerLevel = LowerLevel;
+
+}
+double SimulationPrice::LowerLevel_Get() {
+
+	return m_LowerLevel;
+
+}
 
 double SimulationPrice::Cal_Change(double spot, int type)
 {
@@ -199,6 +229,8 @@ double SimulationPrice::Cal_Change(double spot, int type)
 	//DoubleDigital
 	case 4: return ((spot >= m_LowerLevel) && (spot <= m_UpperLevel)) ? (1.0) : (0.0); break;
 	default:
-		throw("unknown option type found.");
+		std::cout << "Invalid Input" << std::endl;
+		return 0;
+		break;
 	}
 }

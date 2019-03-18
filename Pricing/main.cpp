@@ -20,6 +20,9 @@ int main()
 
 	std::cout << "Welcome to The ****** Calculator" << std::endl;
 
+	int type{ 0 };
+	double UpperLevel{ 0.0 };
+	double LowerLevel{ 0.0 };
 	double spot{ 0.0 };
 	double strike{ 0.0 };
 	double shortRate{ 0.0 };
@@ -31,6 +34,49 @@ int main()
 	bool invalid_output{ false };
 
 	while (true) {
+
+		std::cout << "Please Enter the Type of Calculation You want to Use" << std::endl;
+		std::cout << "0. EUcall  1. EUput  2. DigitalCall  3. DigitalPut  4. DoubleDigital " << std::endl;
+
+		invalid_output = setValue<int>(type);
+
+		if (!invalid_output) {
+			std::cout << "Inputted over 5 times, exit" << std::endl;
+			invalid_output = true;
+			break;
+		}
+		else if(type != 0 && type != 1 && type != 2 && type != 3 && type != 4 )
+		{
+
+			std::cout << "Invalid Type ---- Enter again" << std::endl;
+			continue;
+
+		}
+		Price.type_Set(type);
+
+		if (type == 4) {
+		
+			std::cout << "Please enter the desired value for UpperLevel" << std::endl;
+			invalid_output = setValue<double>(UpperLevel);
+
+			if (!invalid_output) {
+				std::cout << "Inputted over 5 times, exit" << std::endl;
+				invalid_output = true;
+				break;
+			}
+			Price.UpperLevel_Set(UpperLevel);
+
+			std::cout << "Please enter the desired value for LowerLevel" << std::endl;
+			invalid_output = setValue<double>(LowerLevel);
+
+			if (!invalid_output) {
+				std::cout << "Inputted over 5 times, exit" << std::endl;
+				invalid_output = true;
+				break;
+			}
+			Price.LowerLevel_Set(LowerLevel);
+		
+		}
 
 		std::cout << "Please enter the desired value for Spot" << std::endl;
 		invalid_output = setValue<double>(spot);
@@ -92,7 +138,7 @@ int main()
 		}
 		Price.yearsToExpiry_Set(yearsToExpiry);
 
-		std::cout << "Price Call :" << Price.priceCallBySimulation() << std::endl;
+		std::cout << "Price is:" << Price.priceCallBySimulation() << std::endl;
 
 		std::cout << "Would you like to do that again? -> Yes 1 , No 0, Invalid input will exit" << std::endl;
 		int in;

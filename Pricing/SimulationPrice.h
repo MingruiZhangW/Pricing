@@ -19,10 +19,6 @@ public:
 	SimulationPrice();
 
 	double priceCallBySimulation();
-	double pricePutBySimulation();
-	double priceDigitalPutBySimulation();
-	double priceDoubleDigitalBySimulation();
-	double Cal_Change(double spot, int type);
 
 	//Getter & Setter 
 	void yearsToExpiry_Set(double yearsToExpiry);
@@ -37,7 +33,12 @@ public:
 	double shortRate_Get();
 	void numberOfPaths_Set(unsigned long numberOfPaths);
 	unsigned long numberOfPaths_Get();
-
+	void type_Set(int type);
+	int type_Get();
+	void UpperLevel_Set(double UpperLevel);
+	double UpperLevel_Get();
+	void LowerLevel_Set(double LowerLevel);
+	double LowerLevel_Get();
 
 private:
 
@@ -54,6 +55,7 @@ private:
 	double normalDensity(double x);
 	double cumulativeNormal(double x);
 	double getOneGaussianByBoxMuller();
+	double Cal_Change(double spot, int type);
 
 };
 
