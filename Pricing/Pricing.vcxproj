@@ -116,9 +116,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Process.cpp" />
     <ClCompile Include="SimulationPricer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Process.h" />
     <ClInclude Include="SimulationPrice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

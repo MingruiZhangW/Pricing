@@ -1,5 +1,6 @@
 #include "SimulationPrice.h"
-//#include <iostream>
+#include "Process.h"
+
 #include <string>
 
 //https://stackoverflow.com/questions/953710/inline-function-linker-error
@@ -86,7 +87,6 @@ int main()
 			invalid_output = true;
 			break; 
 		}
-		Price.spot_Set(spot);
 
 		std::cout << "Please enter the desired value for Strike" << std::endl;
 		invalid_output = setValue<double>(strike);
@@ -137,6 +137,10 @@ int main()
 			break;
 		}
 		Price.yearsToExpiry_Set(yearsToExpiry);
+
+		Process process(shortRate,annualizedVolatility,strike,spot);
+		double new_spot = process.bachelier_process();
+		Price.spot_Set(new_spot);
 
 		std::cout << "Price is:" << Price.priceCallBySimulation() << std::endl;
 
